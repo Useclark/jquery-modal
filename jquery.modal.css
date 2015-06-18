@@ -1,3 +1,7 @@
+body.modal-open {
+  overflow-y: hidden;
+}
+
 .modal {
   display: none;
   width: 400px;
@@ -41,4 +45,12 @@
   -o-border-radius: 8px;
   -ms-border-radius: 8px;
   border-radius: 8px;
+}
+
+.scrollbar-measure {
+  width: 100px;
+  height: 100px;
+  overflow: scroll;
+  position: absolute;
+  top: -9999px;
 }
