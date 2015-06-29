@@ -9,17 +9,19 @@ var getScrollbarWidth = function ($) {
 
 module.exports = function (window) {
   var $ = window.jQuery;
-  var scrollbarWidth = getScrollbarWidth($);
-  var $body = $('body');
-  $body
-    .on($.modal.OPEN, function () {
-      var contentExceedsViewport = $(window).height() < $(window.document).height();
-      $body.addClass('modal-open');
-      if (contentExceedsViewport) {
-        $body.css('margin-right', scrollbarWidth + 'px');
-      }
-    })
-    .on($.modal.CLOSE, function () {
-      $body.removeClass('modal-open').css('margin-right', '');
-    });
+  $(function(){
+    var scrollbarWidth = getScrollbarWidth($);
+    var $body = $('body');
+    $body
+      .on($.modal.OPEN, function () {
+        var contentExceedsViewport = $(window).height() < $(window.document).height();
+        $body.addClass('modal-open');
+        if (contentExceedsViewport) {
+          $body.css('margin-right', scrollbarWidth + 'px');
+        }
+      })
+      .on($.modal.CLOSE, function () {
+        $body.removeClass('modal-open').css('margin-right', '');
+      });
+  });
 };
