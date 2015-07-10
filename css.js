@@ -1,6 +1,8 @@
 'use strict';
 
 var fs = require('fs');
+var Promise = require('promise');
+var transforms = require('useclark-transforms');
 
 var insertCssFactory = function ($) {
   return function (css) {
@@ -11,6 +13,6 @@ var insertCssFactory = function ($) {
 module.exports = function (window) {
   var $ = window.jQuery;
   var insertCss = insertCssFactory($);
-  var css = fs.readFileSync(__dirname + '/jquery.modal.css', 'utf8');
-  insertCss(css);
+  return transforms.less(__dirname + '/jquery.modal.css')(Promise)
+    .then(insertCss);
 };
